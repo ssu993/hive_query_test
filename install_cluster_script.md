@@ -20,6 +20,7 @@ ssh node3
 ```
 
 ## node1
+```bash
 sudo mkdir ~/.ssh
 sudo chmod 700 ~/.ssh
 ssh-keygen -t rsa -f ~/.ssh/id_rsa
@@ -42,9 +43,10 @@ echo 'node2.sk.com'> ~/target_host
 echo 'node3.sk.com'>> ~/target_host
 echo 'node4.sk.com'>> ~/target_host
 echo 'node5.sk.com'>> ~/target_host
-
+```
 
 ## node[1-5]
+```bash
 sudo sysctl vm.swappiness=1
 sudo sh -c "echo 'vm.swappiness=1'>> /etc/sysctl.conf"
 
@@ -66,8 +68,10 @@ sudo yum -y install ntp
 sudo chkconfig ntpd on
 sudo systemctl enable ntpd
 sudo systemctl start ntpd
+```
 
 ## node1
+```bash
 sudo wget https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/cloudera-manager.repo -P /etc/yum.repos.d/
 sudo vi /etc/yum.repos.d/cloudera-manager.repo
 /*
@@ -82,17 +86,20 @@ sudo yum repolist
 sudo yum -y install oracle-j2sdk1.7
 sudo yum -y install cloudera-manager-server cloudera-manager-daemons
 sudo sh -c "echo 'export JAVA_HOME=/usr/java/jdk1.7.0_67-cloudera/' >> /etc/default/cloudera-scm-server"
+```
 
 ## node[1-5]
+```bash
 sudo yum -y install wget 
 sudo wget https://cdn.mysql.com//Downloads/Connector-J/mysql-connector-java-5.1.47.tar.gz
 sudo tar zxvf mysql-connector-java-5.1.47.tar.gz
 sudo mkdir -p /usr/share/java/
 cd mysql-connector-java-5.1.47
 sudo cp mysql-connector-java-5.1.47-bin.jar /usr/share/java/mysql-connector-java.jar
-
+```
 
 ## node1
+```bash
 sudo yum -y install mariadb-server
 sudo systemctl stop mariadb
 sudo vi /etc/my.cnf
@@ -186,8 +193,10 @@ mysql -u root -p
 	GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'replication_user'@'%' IDENTIFIED BY 'replication_user123!';
 	FLUSH TABLES WITH READ LOCK;
 */
+```
 
 ## node2
+```bash
 sudo yum -y install mariadb-server
 sudo systemctl stop mariadb
 sudo vi /etc/my.cnf
@@ -294,8 +303,10 @@ mysql -u root -p
 	START SLAVE;
 	SHOW SLAVE STATUS\G;
 */
+```
 
 ## node1
+```bash
 mysql -u root -p
 /*
 	unlock tables;
@@ -315,4 +326,5 @@ sudo /usr/share/cmf/schema/scm_prepare_database.sh mysql scm scm scm123!
 
 sudo systemctl start cloudera-scm-server
 sudo systemctl status cloudera-scm-server
+```
 
