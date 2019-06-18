@@ -207,10 +207,12 @@ select * from default.products limit 10;
 select * from default.order_details limit 10;
 select * from default.orders limit 10;
 
-SELECT c.name, count(*) 
+SELECT c.name, count(*) as total_sales_amount
 FROM default.orders a, default.order_details b, default.products c 
 WHERE a.order_id = b.order_id AND b.prod_id = c.prod_id AND c.brand = 'Dualcore' 
-GROUP BY c.name LIMIT 3;
+GROUP BY c.name 
+ORDER BY total_sales_amount desc
+LIMIT 3;
 
 /* probpem11.b */
 SELECT to_date(a.order_date) as date, sum(c.price) as revenue, sum(c.price-c.cost) as profit  
