@@ -1,4 +1,5 @@
 ## node[1-5]
+```bash
 sudo passwd centos
 
 sudo sh -c "echo '172.31.43.162 node1.sk.com node1'>> /etc/hosts"
@@ -16,6 +17,7 @@ sudo sed -i "s/^ChallengeResponseAuthentication .*/ChallengeResponseAuthenticati
 
 sudo systemctl restart sshd
 ssh node3
+```
 
 ## node1
 sudo mkdir ~/.ssh
